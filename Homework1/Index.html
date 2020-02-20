@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Homework 1</title>
+</head>
+<body>
+<p>Основной список:</p>
+<ol id="MainList"><li>1-й элемент списка</li><li>2-й элемент списка</li><li>3-й элемент списка</li><li>4-й элемент списка</li></ol>
+<input style="margin-top: 5px; background-color:thistle" type="button" value="Выбрать первый элемент списка" onclick="searchFirstItemList()"/><br>
+<input style="margin-top: 5px; background-color:thistle" type="button" value="Выбрать последний элемент списка" onclick="searchLastItemList()"/><br>
+<input style="margin-top: 5px; background-color:lightskyblue" type="button" value=">> Выбрать следующий элемент списка" onclick="searchNextItemList()"/><br>
+<input style="margin-top: 5px; background-color:lightskyblue" type="button" value="<< Выбрать предыдущий элемент списка" onclick="searchPreviousItemList()"/><br>
+<input style="margin-top: 5px; background-color: limegreen;" type="button" value="Добавить элемент списка" onclick="appendItemList()"/><br>
+<input style="margin-top: 5px; background-color:tomato;" type="button" value="Удалить элемент списка" onclick="removeItemList()"/><br>
+<input style="margin-top: 5px; background-color: limegreen;" type="button" value="Добавить элемент в начало списка" onclick="beforeItemList()"/><br>
+<script>
+    function searchFirstItemList() {
+        var searchList = document.getElementById("MainList");
+        for (var i =0; i<searchList.childNodes.length; i++)
+            {
+                searchList.childNodes[i].style.color='black';
+                searchList.childNodes[i].removeAttribute("id");
+            }
+        if(searchList.firstChild!=null) {
+            searchList.firstChild.style.color = 'red';
+            searchList.firstChild.setAttribute("id", "currentposition");
+        }
+        else {
+            alert("Внимание! Элементов основного списка нет!");
+        }
+    }
+    function searchLastItemList() {
+        var searchList = document.getElementById("MainList");
+        for (var i =0; i<searchList.childNodes.length; i++)
+            {
+                searchList.childNodes[i].style.color='black';
+                searchList.childNodes[i].removeAttribute("id");
+            }
+        if(searchList.lastChild!=null) {
+            searchList.lastChild.style.color = 'red';
+            searchList.lastChild.setAttribute("id", "currentposition");
+        }
+        else {
+            alert("Внимание! Элементов основного списка нет!");
+        }
+    }
+    function searchNextItemList() {
+        var searchList = document.getElementById("MainList");
+        var searchCurrentPosition = document.getElementById("currentposition");
+        if(searchCurrentPosition===null) {
+            if(searchList.firstChild!=null) {
+                searchList.firstChild.style.color = 'red';
+                searchList.firstChild.setAttribute("id", "currentposition");
+            }
+            else {
+                alert("Внимание! Элементов основного списка нет!");
+            }
+        }
+        else if(searchList.lastChild.innerText!=searchCurrentPosition.innerText) {
+            for (var i =0; i<searchList.childNodes.length; i++)
+                {
+                    searchList.childNodes[i].style.color='black';
+                    searchList.childNodes[i].removeAttribute("id");
+                }
+            searchCurrentPosition.nextSibling.style.color = 'red';
+            searchCurrentPosition.nextSibling.setAttribute("id", "currentposition");
+        }
+    }
+    function searchPreviousItemList() {
+        var searchList = document.getElementById("MainList");
+        var searchCurrentPosition = document.getElementById("currentposition");
+        if(searchCurrentPosition===null) {
+            if(searchList.firstChild!=null) {
+                searchList.firstChild.style.color = 'red';
+                searchList.firstChild.setAttribute("id", "currentposition");
+            }
+            else {
+                alert("Внимание! Элементов основного списка нет!");
+            }
+        }
+        else if(searchList.firstChild.innerText!=searchCurrentPosition.innerText) {
+            for (var i =0; i<searchList.childNodes.length; i++)
+                {
+                    searchList.childNodes[i].style.color='black';
+                    searchList.childNodes[i].removeAttribute("id");
+                }
+            searchCurrentPosition.previousSibling.style.color = 'red';
+            searchCurrentPosition.previousSibling.setAttribute("id", "currentposition");
+        }
+    }
+    function appendItemList() {
+        var searchList = document.getElementById("MainList");
+        var newItemList = document.createElement("li");
+        newItemList.innerHTML = searchList.childNodes.length+1 + '-й элемент списка';
+        searchList.appendChild(newItemList);
+    }
+    function removeItemList() {
+        var searchList = document.getElementById("MainList");
+        var removeItemList = searchList.lastChild;
+        if(removeItemList!=null) {    
+            searchList.removeChild(removeItemList);
+        }
+        else {
+            alert("Внимание! Элементов основного списка нет!");
+        }
+    }
+    function beforeItemList() {
+        var searchList = document.getElementById("MainList");
+        var newItemList = document.createElement("li");
+        newItemList.innerHTML = searchList.childNodes.length+1 + '-й элемент списка';
+        if(searchList.firstChild!=null) {        
+            searchList.insertBefore(newItemList, searchList.firstChild);
+        }
+        else {
+            searchList.appendChild(newItemList);
+        }
+        
+    }
+
+   
+</script>
+</body>
+</html>
