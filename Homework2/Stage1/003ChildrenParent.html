@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework 2.3</title>
+</head>
+<body>
+    <h1 class="class1" id="id1">Title</h1>
+    <div>
+        <span> 
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco <span>SECOND SPAN</span> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+        </span>
+        <p>Lorem <span>ipsum</span> dolor sit amet, consectetur adipisicing elit. Quam fugiat voluptatem in, impedit, provident illum commodi blanditiis! Molestiae dicta, exercitationem repellat illo ratione laboriosam libero voluptatem, necessitatibus blanditiis unde vel!</p>
+    </div>
+    <a href="#">Link</a>
+<script>
+    var paragraph = document.getElementsByTagName("p");
+    for (var i =0; i<paragraph.length; i++)
+    {
+        paragraph[i].style.color='brown';
+    }
+    var multiple = document.querySelectorAll("div p a span");
+    for (var i =0; i<multiple.length; i++)
+    {
+        multiple[i].style.color='red';
+    }
+    var childrenElement = document.querySelectorAll("div > span");
+    for (var i =0; i<childrenElement.length; i++)
+    {
+        childrenElement[i].style.color='green';
+    }
+</script>
+</body>
+</html>

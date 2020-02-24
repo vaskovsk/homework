@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Classwork</title>
+    <style type="text/css">
+    	#one {
+    		width: 250px;
+    		height: 700px;
+    		border: 1px solid #000;
+    		float: left;		
+    	}
+    </style>
+</head>
+<body>
+    <div id="one" onclick="divide(this)">1</div> 
+    <script>	
+	 function divide(div) {
+    	console.log(div);
+    	var width = getComputedStyle(div).width;
+    	width = width.split('px');
+    	width = width[0]/2;
+    	div.style.width = width+'px';
+		//debugger
+		var tempNum = parseInt(div.innerHTML);
+    	div.innerHTML= ++tempNum;
+    	var divDiv = div.cloneNode(true);
+    	div.insertAdjacentElement('afterEnd', divDiv);	
+    }
+
+  	// Добавьте после дива с id=one еще один див с текстом two и id=two
+    // На клик по id=two добавьте перед ним див с id - two_first, а див с id=two измените на two_second 
+
+	var searchOne = document.getElementById("one");
+	searchOne.insertAdjacentHTML("afterEnd", '<div id="two" onclick="changeTwo(this)">two</div>');
+	document.getElementById("two").style.cssText = "width: 250px;height: 700px;border: 1px solid #000;float: left;";
+	function changeTwo(div) {
+		if(document.getElementById("two")){
+		div.insertAdjacentHTML("beforeBegin", '<div id="two_first">two_first</div>');
+		document.getElementById("two_first").style.cssText = "width: 250px;height: 700px;border: 1px solid #000;float: left;";
+		var two_second = document.getElementById("two");
+		two_second.id ="two_second";
+		two_second.innerHTML="two_second";
+		}
+		else {
+			alert("Id=two больше не существует!");
+		}
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework 2.1</title>
+</head>
+<body>
+    <h1 id="id1">Title</h1>
+    <div class="class1" >
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla consequuntur, obcaecati recusandae enim laboriosam eaque, sint incidunt. Perferendis mollitia incidunt blanditiis eveniet, fuga sapiente. Magni dicta maxime fugiat sint soluta?        
+    </div>
+<script>
+        var id = document.getElementById("id1");
+        id.style.color = 'red';
+        id.style.marginTop = '10px';
+        /*по условию: В примере с индентификатором добавьте свойства marginTop с значением 10px и background с значением red
+        изменил на цвет #6e2020, чтобы было видно надпись Title*/
+        id.style.background = '#6e2020';
+        var class1 = document.querySelector("div.class1");
+        class1.style.color = 'blue';
+        class1.style.fontSize= '14px';
+        class1.style.textDecoration= 'underline';
+        class1.classList.add("newclass");
+        allElementsNewclass = document.getElementsByClassName("newclass");
+        for (var i =0; i<allElementsNewclass.length; i++){
+            console.log(allElementsNewclass[i].style.cssText);
+        }
+</script>
+</body>
+</html>

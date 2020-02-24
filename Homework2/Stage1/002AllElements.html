@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework 2.2</title>
+</head>
+<body>
+    <h1 class="class1" id="id1">Title</h1>
+    <p class="class">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+    <a href="#">Link</a>
+<script>
+    /*var all = document.querySelectorAll("*");
+    all[0].style.cssText = "color: red; text-decoration:none;";
+    */
+    
+    var all = document.querySelector("body");
+    all.style.color='red';
+    all.style.textDecoration='none';
+    var paragraph = document.getElementsByTagName("p");
+    for (var i =0; i<paragraph.length; i++)
+    {
+        paragraph[i].style.color='brown';
+    }
+    var searchClass = document.getElementsByClassName("class");
+    for (var i =0; i<searchClass.length; i++)
+    {
+        searchClass[i].style.color='green';
+    }
+    var searchA = document.getElementsByTagName("a");
+    for (var i =0; i<searchA.length; i++)
+    {
+        searchA[i].style.cssText = "color: red; font-weight: bold; font-style: italic; text-decoration: underline;";
+    }
+    var searchAP = document.querySelectorAll("p,a");
+    for (var i =0; i<searchAP.length; i++)
+    {
+        searchAP[i].style.textTransform = 'uppercase';
+    }
+</script>
+</body>
+</html>
