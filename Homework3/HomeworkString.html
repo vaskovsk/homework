@@ -1,0 +1,70 @@
+<!-- 
+    Запросите у пользователя ввести какую-то фразу. Отобразите каждое отдельное слово в виде списка ul li. 
+    Также отобразите первое слово UPPERCASE, а последние 2 с маленькой. Найдите все буквы "а" их количество 
+    в модальное окно. 
+ -->
+ 
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework String</title>
+    <style>
+        .inputText{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h3>Поиск русской буквы "а" независимо от регистра</h3>
+    <input type="text" class="inputText">
+    <input type="button" value="Start Process" onclick="startProcess()">   
+    <p id ="ResultString"></p>
+    <ul id="MainList">
+    </ul>
+    <script>
+        function startProcess(){
+            var strInput = document.querySelector('[type="text"]').value;
+            var resultString =  document.getElementById("ResultString");
+            if(resultString.innerHTML!=null){
+                resultString.innerHTML='';
+            }          
+            document.getElementById("MainList").innerHTML = "";
+            resultString.innerHTML="Результат:";
+            var substrs = strInput.split(" ");
+            for(var i = 0; i<substrs.length; i++){
+                if (i==0){
+                    addItemList(substrs[i].toUpperCase());
+                }
+                else if (i==substrs.length-1||i==substrs.length-2){
+                    addItemList(substrs[i].toLowerCase());
+                }
+                else {
+                    addItemList(substrs[i]);
+                }
+            }
+            replayCharCount(strInput);
+        }
+
+        function addItemList(item) {
+            var searchList = document.getElementById("MainList");
+            var newItemList = document.createElement("li");
+            newItemList.innerHTML = item;
+            searchList.appendChild(newItemList);       
+        }
+
+        function replayCharCount(inputString){
+            var replayCount=0;
+            inputString.toUpperCase().split("").forEach(function (item, index, arr) {
+                if(arr.indexOf("А")!=-1){
+                    if(item=="А"){
+                        replayCount=replayCount+1;
+                    }
+                }
+            });
+            return alert('Количество букв "А" в веденной строке - ' + replayCount);
+        }
+    </script>
+
+</body>
+</html>

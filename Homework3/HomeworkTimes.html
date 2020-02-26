@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework Times</title>
+</head>
+<body>
+<!-- Создайте счетчик секунд, который начинает отчет с 1 и заканчивается на 30, также добавьте кнопки 
+    которые останавливают отчет, и запускают его заново и добавьте кнопку обнуляющую отcчет. 
+    Также попробуйте изменить код так чтобы отчет начинался с 30 и заканчивался на 1. -->
+
+    <p id="timerFirstHTML">Отчет от 1 до 30:</p>
+    <button onclick="stopTimerFirst()">Остановить отсчет</button>
+    <button onclick="startTimerFirst()">Продолжить отсчет</button>
+    <button onclick="clearTimerFirst()">Обнулить отсчет</button>
+
+    <p id="timerSecondHTML">Отчет от 30 до 1:</p>
+    <button onclick="stopTimerSecond()">Остановить отсчет</button>
+    <button onclick="startTimerSecond()">Продолжить отсчет</button>
+    <button onclick="clearTimerSecond()">Обнулить отсчет</button>
+
+    <script>
+        var endSecondsFirst = 30;
+        var secondsFirst=1;
+        var timerFirst = setInterval(funcTimerFirst, 1000);
+        function funcTimerFirst() {
+            if(secondsFirst<=endSecondsFirst){
+                document.getElementById("timerFirstHTML").innerHTML = "Отчет от 1 до 30: " + secondsFirst + " секунд";
+                secondsFirst=secondsFirst+1;
+            }
+            else{
+                stopTimerFirst();
+                secondsFirst=1;
+            }
+        }
+        function startTimerFirst() {
+            clearInterval(timerFirst);
+            timerFirst = setInterval(funcTimerFirst, 1000);
+        }
+        function stopTimerFirst() {
+            clearInterval(timerFirst);
+        }
+        function clearTimerFirst() {
+            secondsFirst=1;
+            clearInterval(timerFirst);
+            timerFirst = setInterval(funcTimerFirst, 1000);
+        }
+        
+        var endSecondsSecond = 1;
+        var secondsSecond=30;
+        var timerSecond = setInterval(funcTimerSecond, 1000);
+        function funcTimerSecond() {
+            if(secondsSecond>=endSecondsSecond){
+                document.getElementById("timerSecondHTML").innerHTML = "Отчет от 30 до 1: " + secondsSecond + " секунд";
+                secondsSecond=secondsSecond-1;
+            }
+            else{
+                stopTimerSecond();
+                secondsSecond=30;
+            }
+        }
+        function startTimerSecond() {
+            clearInterval(timerSecond);
+            timerSecond = setInterval(funcTimerSecond, 1000);
+        }
+        function stopTimerSecond() {
+            clearInterval(timerSecond);
+        }
+        function clearTimerSecond() {
+            secondsSecond=30;
+            clearInterval(timerSecond);
+            timerSecond = setInterval(funcTimerSecond, 1000);
+        }
+    </script>
+</body>
+</html>
