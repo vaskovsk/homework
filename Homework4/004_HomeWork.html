@@ -1,0 +1,64 @@
+<!-- Доработайте пример, 005_thisExample.html, при наведении мыши к одному из блоков, цвет блока 
+    должен измениться, на уникальный, такой которого еще нету у существующих блоков. 
+    Также выведите в блок текстовое оповещение о информации цвета, который используется для фона данного блока. 
+    При попытке закрыть вкладку, придупредите пользователя о том что информация будет утеряна. Используйте 
+    window.onload.  
+rgb - random 
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ключевое слово this</title>
+    <style>
+        div {
+            background-color:green;
+            display: block;
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+            float: left;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        window.onload = function() {
+            var divArr = document.getElementsByTagName("div");
+            for (var i = 0; i < divArr.length; i++) {
+                divArr[i].onmouseover = function () {
+                    var randomColor =getRandomColor();            
+                    this.style.backgroundColor = randomColor;
+                    this.innerHTML = randomColor;              
+                }
+            }                 
+        }
+       function getRandomColor(){
+            var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);   
+            var allDiv = document.getElementsByTagName("div");
+            var counter=0;
+            for (var i = 0; i < allDiv.length; i++) {
+                if(allDiv[i].style.backgroundColor!=randomColor){
+                    counter++;
+                }
+            }
+            if(counter==allDiv.length){
+            return randomColor;
+            }
+            else{
+                getRandomColor();
+            }        
+        }
+        window.onbeforeunload = function() {
+            return "Информация будет утеряна!";
+            };
+    </script>
+</body>
+</html>
