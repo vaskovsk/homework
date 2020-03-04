@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework 5</title>
+    <style> 
+        .prompt{
+            position: absolute;
+            border: teal solid 1px;
+            background:wheat;
+            color: black;
+            margin-top: 5px;
+            padding: 1px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Доработайте пример 004_Attr_Tech.html таким образом, чтобы при наведении на span элементы, 
+    подсказка сплыва под ними, а не в модальном окне. Используйте addEventListener
+-->
+<h3>Вторая часть задания</h3>
+<div id="main-div">
+    <span data-tooltip="наведите">наведите</span> 
+    <span data-tooltip="для">для</span> 
+    <span data-tooltip="подсказки">подсказки</span>
+</div>
+
+<script>
+    window.onload = function () {
+        var mainDiv = document.getElementById("main-div");
+
+        if (mainDiv) {
+            mainDiv.addEventListener("mouseover", function(e) {
+                var target = e && e.target || window.event.srcElement;
+                var dataToggleId = target.getAttribute('data-tooltip');
+                if (!dataToggleId) {
+                    return
+                };
+                var createPrompt = document.createElement("div");
+                createPrompt.innerHTML = dataToggleId;
+                createPrompt.style.top = target.offsetTop + 14 +"px";
+                createPrompt.style.left = target.offsetLeft +"px";
+                createPrompt.classList.add('prompt');
+                mainDiv.appendChild(createPrompt);
+            });
+
+            mainDiv.addEventListener("mouseout", function(e) {
+                var target = e && e.target || window.event.srcElement;
+                var dataToggleId = target.getAttribute('data-tooltip');
+                if (!dataToggleId) {
+                    return
+                };
+                if(this.lastChild.tagName =='DIV'){
+                    this.removeChild(this.lastChild);
+                };
+            });
+        };
+    };
+</script>
+</body>
+</html>

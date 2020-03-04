@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <style>
+        div>div{
+            border: red solid 1px;
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Создайте 5 блоков с текстом. Добавьте в каждый из блоков кнопку для его удаления. Используйте только 
+        один обработчик.
+-->
+<h3>Первая часть задания</h3>
+<div id = "mainBlock">
+    <div>№1
+        <br/>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ad at ab tempora. Repudiandae rerum quod necessitatibus corporis tempore beatae nemo cupiditate commodi velit quidem. Veritatis hic cumque officia in?
+        <br/>
+        <button>Удалить 1</button>
+    </div>
+    <div>№2
+        <br/>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit assumenda est nostrum exercitationem hic quasi quo delectus molestias. Quaerat veniam dolores aliquam explicabo provident tempore voluptas, cupiditate cumque necessitatibus numquam.
+        <br/>
+        <button>Удалить 2</button>
+    </div>
+    <div>№3
+        <br/>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci repellat nam quaerat quidem fuga odio incidunt quae impedit blanditiis iure dolorum veritatis iste perferendis itaque ipsum, explicabo distinctio unde porro.
+        <br/>
+        <button>Удалить 3</button>
+    </div>
+    <div>№4
+        <br/>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate atque nesciunt rerum culpa! Maiores tenetur qui non cum facere eos expedita, ab doloribus aut facilis dolore, commodi accusantium pariatur quae.
+        <br/>
+        <button>Удалить 4</button>
+    </div>
+    <div>№5
+        <br/>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum quae ab, provident consectetur, nesciunt excepturi non earum totam expedita, incidunt accusamus placeat perspiciatis perferendis sit eveniet rerum omnis architecto vero?
+        <br/>
+        <button>Удалить 5</button>
+    </div>
+</div>
+
+<script>
+    window.onload = function () {
+        var generalBlock = document.getElementById('mainBlock');
+
+        if (generalBlock) {
+            generalBlock.addEventListener("click", function(e) {
+            var target = e && e.target || window.event.srcElement;
+            if (target.tagName !== 'BUTTON') {
+                return
+            }
+            generalBlock.removeChild(target.parentNode);
+            });
+        };
+    };
+</script>
+</body>
+</html>

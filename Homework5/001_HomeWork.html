@@ -1,0 +1,78 @@
+<!--
+Создайте ссылку и див с текстом внутри, который изначально при загрузке страницы будет скрыт. 
+При клике на ссылку див появляется, если повторно нажать ссылку див и текст должны вернуться. 
+Также создайте кнопку, которая будет отменять выполнение обработчика клика по ссылке.
+ -->
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework5</title>
+    <style>
+        .firstDiv{
+            color: red;
+        }
+        .secondDiv{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="#">Solution #1 (remove)</a>
+    <br/>
+    <br/>
+    <a href="#">Solution #2 (hide)
+        <div class="secondDiv"><br/><br/>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat aspernatur obcaecati porro libero mollitia sunt sit ut nemo doloremque, earum tempore, explicabo recusandae ipsa doloribus non, neque magnam autem inventore.</div>
+    </a>
+    <br/>
+    <br/>
+    <div>
+        <button id="removeFirstBtn">Удалить обработчик с Solution #1 (remove)</button>
+        <br/>
+        <br/>
+        <button id="removeSecondBtn">Удалить обработчик с Solution #2 (hide)</button>
+    </div>  
+
+    <script>
+        window.onload = function () {
+        var searchAllLink = document.querySelectorAll('a');
+        var searchMyFirstLink = searchAllLink[0];
+        var searchMySecondLink = searchAllLink[searchAllLink.length-1];      
+        var removeFirstButton = document.getElementById("removeFirstBtn");
+        var removeSecondButton = document.getElementById("removeSecondBtn");
+
+        searchMyFirstLink.addEventListener("click", myFirstEvent);
+        searchMySecondLink.addEventListener("click", mySecondEvent);
+        removeFirstButton.addEventListener("click", removeFirstSolution);
+        removeSecondButton.addEventListener("click", removeSecondSolution);
+        
+        function myFirstEvent(event){
+            var searchMyFirstDiv = searchMyFirstLink.querySelector('.firstDiv');
+            if(searchMyFirstDiv==null){
+                var createMyFirstDiv = document.createElement("div");
+                createMyFirstDiv.innerHTML = "<br/><br/>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid, magnam. Beatae error quis dolor? Debitis in architecto explicabo, placeat possimus ex veniam quis voluptatem a assumenda amet iusto ipsa esse.";
+                createMyFirstDiv.classList.add('firstDiv');
+                searchMyFirstLink.appendChild(createMyFirstDiv);
+            } else{
+                searchMyFirstLink.removeChild(searchMyFirstDiv);
+            }
+            event.preventDefault();
+       }
+   
+        function mySecondEvent(event){
+            var searchMySecondDiv = searchMySecondLink.querySelector('div');
+            searchMySecondDiv.classList.toggle('secondDiv');
+            event.preventDefault();
+       }
+       
+        function removeFirstSolution () {
+            searchMyFirstLink.removeEventListener("click", myFirstEvent);
+        }
+       
+        function removeSecondSolution () {
+            searchMySecondLink.removeEventListener("click", mySecondEvent);
+        }
+    }
+    </script>
+</body>
+</html>
