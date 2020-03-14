@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        #dragDiv {
+            position: absolute;
+            background-color: red;
+            text-align: center;
+            border: 1px solid black;
+            padding: 10px;
+            cursor: move;
+            color: white;
+        }
+        .goToTop{
+            position: absolute;
+            top: 50px;
+            color: white;
+            background: green;          
+        }
+        .stopRun{
+            position: absolute;
+            top: 200px;
+            color: black;
+            background: yellow;          
+        }
+        </style>
+</head>
+<body>
+    <!-- 
+    1. back to top button; 
+    3. drag; (перемещение)
+    2. создайте div, при клике на него, div начинает двигаться вправо, при клике на кнопку - 
+    останавливается, при попадании div к краю окна, он переходит к началу окна. 
+    -->
+    
+    <div id="dragDiv"> DIV элемент</div>
+    <button class="goToTop" onclick="goToTop()">Go To Top drag DIV</button>
+    <div id="runDiv" style="position:absolute;background-color: greenyellow;text-align: center;border: 1px solid black;padding: 10px;
+    color: white; top: 100px;cursor: pointer;left: 5px; width: 30px;"> DIV Run</div>
+    <button class="stopRun" onclick="stopRunDiv()">Stop Run DIV</button>
+    <script>
+        /* ДЛЯ 
+        1. back to top button; 
+        3. drag; (перемещение)*/
+        var myDiv = document.getElementById("dragDiv");
+        dragDiv(myDiv);
+        
+        function dragDiv(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            elmnt.onmousedown = dragMouseDown;
+                  
+            function dragMouseDown(e) {
+                e = e || window.event;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragDiv;
+                document.onmousemove = divDrag;
+            }
+        
+            function divDrag(e) {
+                e = e || window.event;
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+        
+            function closeDragDiv() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+            }
+        }
+
+        function goToTop() {
+            myDiv.style.top=0;
+            myDiv.style.left=0;
+        }
+        
+         /* ДЛЯ 
+         2. создайте div, при клике на него, div начинает двигаться вправо, при клике на кнопку - 
+    останавливается, при попадании div к краю окна, он переходит к началу окна. */
+        
+        var forRunDiv;
+        window.onload = function () {
+                var runDiv = document.getElementById("runDiv");
+                if (runDiv) {
+                    runDiv.addEventListener("click", startDivElement);
+                };
+            };
+
+        function startDivElement(){
+            forRunDiv = setInterval(runDivElement, 10);
+        }
+
+        function runDivElement() {
+            if (parseInt(document.getElementById("runDiv").style.left) < window.screen.availWidth) {
+                document.getElementById("runDiv").style.left = ((parseInt(document.getElementById("runDiv").style.left)+2) + 'px');
+                 
+            }
+            else {
+                document.getElementById("runDiv").style.left = '5px';
+            }
+        }
+        function stopRunDiv(){
+            clearInterval(forRunDiv);
+        }
+        </script>
+</body>
+</html>
+      
