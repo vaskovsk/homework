@@ -1,0 +1,31 @@
+<!-- Создайте функцию, которая возвращает день недели для даты. День нужно возвратить в формате - понедельник имеет номер 1, 
+    вторник номер 2, …, воскресенье - номер 7. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <script>
+         var getDate = prompt("Введите дату для проверки (формат dd/mm/yyyy)");
+
+         function serialNumberDay(inputDay){
+            var result;
+
+            var parsDate = inputDay.match(/\d+/g)
+            date = new Date(parsDate[2], parsDate[1] - 1, parsDate[0]);
+            if (date.getFullYear() == parsDate[2] && date.getDate()== parsDate[0] && date.getMonth()== parsDate[1] - 1)
+            {   
+                result=date.getDay();
+            }
+            else {
+                result="Ошибка. Введенное значение не имеет формат ДАТЫ";
+            }
+            return result;
+        }
+        document.write("<div>" + serialNumberDay(getDate) + "</div>");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

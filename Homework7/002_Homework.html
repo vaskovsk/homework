@@ -1,0 +1,78 @@
+<!-- Реализуйте последний 2 слайда в презентации с помощью пройденого на уроке материала -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <script>
+        function Men(nameObjeck) {
+            this.myName=nameObjeck;
+            this.walk = function () {
+                document.write(this.myName + " is walking <br/>"); 
+            };
+            this.eat = function () {
+                document.write( this.myName + " is eat <br/>"); 
+            };
+            this.drink = function () {
+                document.write( this.myName + " is drink <br/>"); 
+            };
+        };
+
+        function Soldier(nameObjeck) {
+            this.myName=nameObjeck;
+            this.shoot = function () {
+                document.write( this.myName + " is shoot <br/>"); 
+            };
+        };
+
+        function Doctor(nameObjeck) {
+            this.myName=nameObjeck;
+            this.cure = function () {
+                document.write( this.myName + " is cure <br/>"); 
+            };
+        };
+
+        function Dentist(nameObjeck) {
+            this.myName=nameObjeck;
+            this.cure = function () {
+                document.write( this.myName + " is treat teeth <br/>"); 
+            };
+        };
+
+        function Surgeon(nameObjeck) {
+            this.myName=nameObjeck;
+            this.cure = function () {
+                document.write( this.myName + " is perform operations <br/>"); 
+            };
+        };
+
+        Soldier.prototype = new Men();
+        Doctor.prototype = new Men();
+        Dentist.prototype = new Doctor();
+        Surgeon.prototype = new Doctor();
+
+        var men = new Men("MEN");
+        var soldier = new Soldier("SOLDIER");
+        var doctor = new Doctor("DOCTOR");
+        var dentist= new Dentist("DENTIST");
+        var surgeon = new Surgeon("SURGEON");
+
+        men.walk();
+        men.drink();
+        men.eat();
+        soldier.walk();
+        soldier.drink();
+        soldier.eat();
+        soldier.shoot();
+        doctor.walk();
+        doctor.drink();
+        doctor.eat();
+        doctor.cure();
+        dentist.cure();
+        surgeon.cure();
+
+    </script>
+</head>
+<body>
+</body>
+</html>
