@@ -1,0 +1,179 @@
+ <!-- Создайте страницу которая запрашивает имя пользователя, если пользователь вводит "Admin" либо "admin" 
+        он попадает на страницу, которая оповещает его о том что " Пользоваетль Admin(не статическая строка, 
+        а данные что ввел пользователь) вошел в систему" а рядом разместите кнопку "Выход" которая вернет 
+        пользователя к модальному окну ввода логина. Реализуйте код как для куки так и для localstorage. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <style>
+        #registration, #wrapper, #wrapper, #isAuthorized {
+            display: none;
+        }
+        #isAuthorized {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        #wrapper {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        #registration {
+            width: 300px;
+            position: fixed;
+            left: 50%;
+            transform: translate(-50%);
+            z-index: 99;
+            padding: 15px;
+            background-color: white;
+            text-align: center;
+            border: 1px firebrick solid;
+            background:wheat;
+            border-radius: 5px;
+        }
+        input{
+            width: 270px;
+            height: 25px;
+            margin: 5px;
+            border-radius: 2px;
+        }
+        form>:first-child{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: midnightblue;
+        }
+    </style>
+    <script>
+        window.onload=function() {    
+            var startWithCookie='';
+            var cookieBtn = document.getElementById('cookie-btn');     
+            var localstorageBtn = document.getElementById('localstorage-btn');   
+            var form = document.getElementById('registration');
+            var wrapper = document.getElementById('wrapper');
+            var blockAuthorized = document.getElementById('isAuthorized');
+            var submitBtn = document.querySelector('[type="submit"]');
+            var exitBtn = document.getElementById('exit-btn');
+            submitBtn.addEventListener('click', myAuthorization);
+            exitBtn.addEventListener('click', exitUser);
+
+            cookieBtn.onclick = function () {
+                startWithCookie=1;
+                form.style.display='block';
+                wrapper.style.display='block';
+            }
+            localstorageBtn.onclick = function () {
+                startWithCookie=0;
+                form.style.display='block';
+                wrapper.style.display='block';
+            }
+
+            function exitUser(){
+                if(startWithCookie===1){
+                    clearCookieValue('login');
+                } else if(startWithCookie===0){
+                    localStorage.removeItem('login');
+                }             
+                form.reset();
+                form.style.display = 'block';
+                wrapper.style.display='block';
+                blockAuthorized.firstElementChild.remove();
+                blockAuthorized.style.display='none';
+            }
+
+            function myAuthorization(e){
+                if (form.userName.value==="Admin"|| form.userName.value==="admin"){
+                    if(startWithCookie===1){
+                        var cookieStr = "";
+                        cookieStr += "login=" + form.userName.value + ";";
+                        document.cookie = cookieStr;
+                    } else if(startWithCookie===0){
+                        window.localStorage.setItem("login", form.userName.value);
+                    }
+                    addElement();
+                    blockAuthorized.style.display = 'block';
+                    form.style.display = 'none';
+                    wrapper.style.display = 'none';
+                    cookieBtn.style.display = 'none';
+                    localstorageBtn.style.display = 'none';
+                    e.preventDefault();
+                } else {
+                    alert("Имя пользователя не соответствует Admin или admin");                
+                }
+            }
+
+            function addElement() {
+                var newDiv = document.createElement("div");
+                newDiv.setAttribute("id", "myText");
+                newDiv.innerHTML = getText();
+                blockAuthorized.insertBefore(newDiv, exitBtn);
+            }
+
+            function getText(){
+                var myLogin;
+                if(startWithCookie===1){
+                    myLogin = findCookieValue("login");
+                } else if(startWithCookie===0){
+                    myLogin = window.localStorage.getItem("login");
+                }           
+                if(myLogin!="Error" && myLogin!=null){
+                    var result = 'Пользоваетль ' + myLogin + ' вошел в систему';
+                }
+                else{
+                    var result = "Ошибка чтения Cookie/Storage"
+                }
+                return result;
+            }
+
+            function findCookieValue(cookieName) {
+                var allcookies = document.cookie; 
+                var pos = allcookies.indexOf(cookieName + "="); 
+                if (pos != -1) {
+                    var start = pos + cookieName.length + 1;
+                    var end = allcookies.indexOf(";", start); 
+                    if (end == -1) {
+                        end = allcookies.length;
+                    } 
+                    var value = allcookies.substring(start, end);
+                    return decodeURIComponent(value);
+                }
+                else {
+                    return "Error";
+                }
+            }
+
+            function clearCookieValue(cookieName) {
+                document.cookie = cookieName + '=""';
+            }
+
+            wrapper.onclick = function () {
+                form.style.display = 'none';
+                wrapper.style.display = 'none';
+                cookieBtn.style.display = 'block';
+                localstorageBtn.style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body>    
+    <input type="button" value="With Cookie" id="cookie-btn"> 
+    <input type="button" value="With LocalStorage" id="localstorage-btn"> 
+    <div id="wrapper"></div>
+    <form id="registration">
+        <div>Форма авторизации</div>
+        <input type="text" name='userName' placeholder="Введите логин">        
+        <!-- <input type="password" name="password" placeholder="Введите пароль"> -->
+        <input type="submit" name="submit" value="Вход">
+    </form>
+    <div id="isAuthorized">
+        <input type="button" value="Выход" id="exit-btn">
+    </div>
+</body>
+</html>
