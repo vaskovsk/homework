@@ -224,7 +224,7 @@ window.onload = function()  {
 
 	function runAnimation(){
 		animation.style.display='block';
-		//wrapper.style.display = 'block';
+		wrapper.style.display = 'block';
 		setTimeout(hideAnimation, 4300);
 	}
 	function hideAnimation(){
@@ -240,7 +240,6 @@ window.onload = function()  {
 		document.getElementById("myDropdown").classList.toggle("show");
 	  }
 	  
-	  // Close the dropdown if the user clicks outside of it
 	  window.onclick = function(event) {
 		if (!event.target.matches('.dropbtn')) {
 		  var dropdowns = document.getElementsByClassName("dropdown-content");
