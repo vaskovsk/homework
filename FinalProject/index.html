@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HomeWork 10</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i|Work+Sans:100,200,300,400,500,600,700,800,900&display=swap&subset=cyrillic" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="scripts/js.js"></script>
+</head>
+<body>
+	<div class="headerMain">
+		<div class="backgroundImg">
+			<div class="bgImg">
+			</div>
+			<div class="bgFilter">
+			</div>
+		</div>
+		<div class="header">
+			<div>
+				<div>
+					<a href="index.html" target="_self" title="Go to StarWars">
+						<img src="images/logo.png" alt="Logo" class="logo">
+					</a>
+				</div>
+				<div>
+					<ul class="menu">
+						<li><a href="index.html" target="_self" title="Go to HOME">HOME</a></li>
+                        <li><a href="https://swapi.co" target="_blank" title="Go to SWAPI">SWAPI</a></li>
+						<li><a href="https://github.com/vaskovsk/" target="_blank" title="Go to all GIT">GIT</a></li>
+						<li>
+							<div class="dropdown">
+							<div class="dropbtn">HOMEWORK</div>
+								<div id="myDropdown" class="dropdown-content">
+								<a href="https://github.com/vaskovsk/homework/tree/master/Homework1" target="_blank">HomeWork 1</a>
+								<a href="https://github.com/vaskovsk/homework/tree/master/Homework2" target="_blank">HomeWork 2</a>
+								<a href="https://github.com/vaskovsk/homework/tree/master/Homework3" target="_blank">HomeWork 3</a>
+								<a href="https://github.com/vaskovsk/homework/tree/master/Homework4" target="_blank">HomeWork 4</a>
+								<a href="https://github.com/vaskovsk/homework/tree/master/Homework5" target="_blank">HomeWork 5</a>
+								<a href="https://github.com/vaskovsk/homework/tree/master/Homework6" target="_blank">HomeWork 6</a>
+								<a href="https://github.com/vaskovsk/homework/tree/master/Homework7" target="_blank">HomeWork 7</a>
+								<a href="https://github.com/vaskovsk/homework/tree/master/Homework8" target="_blank">HomeWork 8</a>
+								</div>
+						  	</div>
+						</li>
+						<li><a href="index.html" target="_self" title="Go to FEEDBACK">FEEDBACK</a></li>
+						<li><a href="index.html" target="_self" title="Go to CONTACT">CONTACT</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="headerText">
+			<h2>
+				Star Wars fans
+			</h2>
+			<h1>
+				We know more about your favorite heroes
+				<br>
+				<em>click the galaxy icon and learn all the secrets</em>
+			</h1>
+		</div>
+		<div id="callAPI" style="color: #ffffff;"><i class="fab fa-galactic-republic btnCallAPI"></i></div>
+	</div>
+	<div class="bgImgHeroes notVisible">
+		<div class="areaOfHeroes">
+			<ol id="listHeroes">
+			</ol>
+		</div>
+	</div>
+	<div id="animation"></div>
+	<div id="wrapper"></div>
+    <div id="heroInfoWindow">
+		<div class="btnBackList">Back to list</div>
+		<table id="heroInfo">
+		</table>		  
+    </div>
+
+</body>
+</html>
